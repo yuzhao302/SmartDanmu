@@ -1,0 +1,228 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+        .display-none {
+            display: none;
+        }
+        body {
+            width: 300px;
+            background-color: #f7f7f7;
+            font-size: 75%;
+        }
+        code,kbd, .code {
+            font-family: Consolas, Courier, monospace;
+        }
+        a {
+            color: inherit;
+        }
+        a[data-options-link] {
+            text-decoration: none !important;
+        }
+        a[data-options-link]::after {
+            content: ' ⌾';
+            color: #aaa;
+        }
+        .slim p {
+            margin: .3em;
+            text-align: left;
+        }
+        .clearfix {
+            clear: both;
+        }
+        kbd { /* stolen from github */
+            display: inline-block;
+            padding: 3px 5px;
+            font-size: 10px;
+            color: #444d56;
+            vertical-align: baseline;
+            background-color: #fafbfc;
+            border: solid 1px #c6cbd1;
+            border-bottom-color: #959da5;
+            border-radius: 3px;
+            box-shadow: inset 0 -1px 0 #959da5;
+        }
+        kbd:empty::after {
+            content: '未设置快捷键';
+            opacity: .5;
+        }
+        body, #switch {
+            font-family: '微软雅黑', 'Microsoft Yahei', '宋体', sans-serif;
+        }
+        #pakku-logo, #pakku-logo img {
+            display: block;
+            width: 32px;
+            height: 32px;
+            float: left;
+            margin-right: 12px;
+        }
+        #pakku-title {
+            font-size: 30px;
+            line-height: 30px;
+            font-family: Consolas, Courier, '微软雅黑', 'Microsoft Yahei', monospace;
+            margin: 0 0 .5em 0;
+        }
+        #pakku-title small {
+            font-weight: normal;
+            font-size: 15px;
+            vertical-align: middle;
+        }
+        #switch {
+            border: black 1px solid;
+            border-radius: 3px;
+        }
+        #switch.on {
+            background-color: #dfd;
+        }
+        #switch.off {
+            background-color: #ddd;
+        }
+        #hint-text {
+            text-align: center;
+        }
+        #result table {
+            border-spacing: 0;
+            margin-top: 1em;
+            width: 100%;
+        }
+        tr:hover {
+            background-color: #fcfcfc;
+        }
+        #result td, #result th {
+            padding: 3px 0 3px 0;
+        }
+        #result tr.first-item td {
+            border-top: 1px solid #aaa;
+        }
+        #result tr.first-item td:first-child {
+            font-weight: bold;
+        }
+        #result th {
+            text-align: left;
+        }
+        #result td:last-child {
+            text-align: right;
+            padding-right: 1em;
+        }
+        #result * {
+            font-size: 13px;
+        }
+        #exception {
+            background-color: #ffaaaa;
+            overflow: auto;
+            padding-left: 1em;
+            margin-top: 1em;
+        }
+        #temprules {
+            font-family: Consolas, Courier, monospace;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        #temprules li {
+            color: white;
+            padding-left: 1em;
+            cursor: pointer;
+        }
+        .temprule-forcelist {
+            background-color: #aa0000;
+        }
+        .temprule-whitelist {
+            background-color: #999999;
+        }
+        #temprule-pattern {
+            width: 100%;
+        }
+        #temprules:empty+#temprules-hint {
+            display: none;
+        }
+        .status-time {
+            opacity: .6;
+        }
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 24px;
+        }
+
+        .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+         background-color: white;
+         -webkit-transition: .4s;
+         transition: .4s;
+        }
+
+        input:checked + .slider {
+         background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+         -webkit-transform: translateX(16px);
+        -ms-transform: translateX(16px);
+        transform: translateX(16px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+        border-radius: 24px;
+        }
+
+        .slider.round:before {
+        border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <p style="font-size: 18px"><img src="icon.png" style="width: 24px;height: 24px;float: left;margin-right: 12px;">Smart Danmu &nbsp v1.0</p>
+    <hr>
+    <p style="font-size: 12px"><kbd>CTRL+SHIFT+F</kbd>&nbspShow/Hide Popup page</p> 
+    <p style="font-size: 12px"><kbd>CTRL+SHIFT+R</kbd>&nbspEnable/Disable Smart DanMu Filter</p>      
+    <!-- <div class="slim" style="padding-top: .5em">
+        <table>
+            <tr>
+                <th style="font-size: 14px">Enable/Disable Smart DanMu Filter</th>
+                <th>
+                    <label class="switch">
+                        <input name="switch"type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </th>
+            </tr>
+        </table> -->
+        <hr>
+        <p style="font-size: 13px">This is an extension that help you filter out the low-quality bullets when watching videos on bilibili</p>
+            
+        
+        <!-- <p>SmartDanmu by @NicNiu</p>
+        <p>@MikeLi   @BobZhao</p> -->
+    </div>
+
+</body>
+</html>

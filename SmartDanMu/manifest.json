@@ -1,0 +1,50 @@
+{
+  "name": "SmartDanmu",
+  "description": "This is a test version of Smart Dakuma, which aims to filter and combine comments in Bilibili site",
+  "version": "1.0",
+  "manifest_version": 2,
+  "background": {
+        "page": "background.html"
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "icons":{
+    "639":"icon.png"
+  },
+  "permissions": [
+        "*://*.bilibili.com/*",
+        "http://160.36.56.203/",
+        // "http://127.0.0.1/",
+        "webRequest",
+        "webRequestBlocking",
+        "notifications",
+        "storage"
+        ],
+  "commands": {
+    "toggle-feature": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "MacCtrl+Shift+Y"
+       },
+      "description": "Send a 'toggle-feature' event to the extension"
+    },
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      }
+    }
+  },
+    "content_scripts": [
+        {
+            "matches": ["*://*.bilibili.com/*"],
+            "js": ["assets/script_injector.js"],
+            "run_at": "document_end",
+            "all_frames": true
+        }
+    ],  
+  "web_accessible_resources": [
+        "assets/xhr_hook.js"
+    ]
+}
